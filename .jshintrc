@@ -1,0 +1,15 @@
+{
+	"esversion": 6,
+	"expr": true,
+	"loopfunc": true,
+	"undef": true,
+	"globals":
+	{
+		"console": false,
+		"process": false,
+		"module": false,
+		"setInterval": false,
+		"require": false,
+		"window": false
+	}
+}

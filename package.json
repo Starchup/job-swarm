@@ -1,0 +1,21 @@
+{
+  "name": "job-swarm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts":
+  {
+    "pretest": "jshint index.js && jshint lib/"
+  },
+  "keywords": [],
+  "author": "Starchup Inc",
+  "license": "ISC",
+  "dependencies":
+  {
+    "@google-cloud/datastore": "1.1.0"
+  },
+  "devDependencies":
+  {
+    "jshint": "2.9.5"
+  }
+}
