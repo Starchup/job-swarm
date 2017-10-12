@@ -95,3 +95,16 @@ The following methods are available for controller instances of JobSwarm (option
 * `deleteJobs(filter)` Deletes job datastore entities matching filter. Returns count object
 
 
+### Datastore Indexes
+Google Datastore requires manual indexes to be set up for complex queries (queries with more than one equality or sort order, or queries with one or more equalities and one or more sort orders).  The only complex query built-in to this module is the query for .getNextJob().  Use the following as the basis for your index.yaml file for creating your datastore indexes, but you may need to add more if you decide to use more complex queries.
+
+```
+#index.yaml
+indexes:
+
+- kind: "Job"
+  properties:
+  - name: "status"
+  - name: "created"
+```
+
