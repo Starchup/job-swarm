@@ -85,6 +85,7 @@ The following methods are available for all instances of JobSwarm (options.contr
 * `activateJob(job)` Takes datastore job entity and sets status to 'active', startTime to new Date().toJSON()
 * `completeJob(job)` Takes datastore job entity and sets status to 'complete', completionTime to new Date().toJSON()
 * `completeJobWithError(job, err)` Takes datastore job entity and err and sets status to 'failed', completionTime to new Date().toJSON(), and error to err.message
+* `skipJob(job)` Takes datastore job entity and sets status to 'skipped', completionTime to new Date().toJSON()
 
 The following methods are available for controller instances of JobSwarm (options.controller = true)
 
