@@ -12,6 +12,7 @@ const swarm = new JobSwarm(
 	apiEndpoint: API_ENDPOINT, //For emulated/hosted datastore
 	namespace: YOUR_DATASTORE_NAMESPACE,
 	entityKind: 'Job', //Google datastore kind.  Defaults to 'Job',
+	staleAfter: '30 minutes', //Time after which job is considered stale.  `"${value} ${unit}"` format
 	controller: false,//true creates a controller instance, which has access to more methods for maintaining the datastore
 });
 ```
@@ -86,10 +87,12 @@ The following methods are available for all instances of JobSwarm (options.contr
 * `completeJob(job)` Takes datastore job entity and sets status to 'complete', completionTime to new Date().toJSON()
 * `completeJobWithError(job, err)` Takes datastore job entity and err and sets status to 'failed', completionTime to new Date().toJSON(), and error to err.message
 * `skipJob(job)` Takes datastore job entity and sets status to 'skipped', completionTime to new Date().toJSON()
+* `markJobStale(job)` Takes datastore job entity and sets status to 'stale'
 
 The following methods are available for controller instances of JobSwarm (options.controller = true)
 
 * `getJobs(filter)`  Takes filter object `{where:..., order:..., limit:...} and returns matching jobs
+* `getStaleJobs()`  Returns active jobs started before staleAfter cutoff
 * `createJobs(data)` Takes array of {name: '', type: ''} objects and creates jobs.  Returns count object
 * `createRawEntity(data)` Takes data object and creates a completely custom datastore entity. Returns count object
 * `deleteJob(job)` Takes job datastore entity and deletes. Returns count object
@@ -97,7 +100,7 @@ The following methods are available for controller instances of JobSwarm (option
 
 
 ### Datastore Indexes
-Google Datastore requires manual indexes to be set up for complex queries (queries with more than one equality or sort order, or queries with one or more equalities and one or more sort orders).  The only complex query built-in to this module is the query for .getNextJob().  Use the following as the basis for your index.yaml file for creating your datastore indexes, but you may need to add more if you decide to use more complex queries.
+Google Datastore requires manual indexes to be set up for complex queries (queries with more than one equality or sort order, or queries with one or more equalities and one or more sort orders).  The only complex queries built-in to this module are the queries for .getNextJob() and .getStaleJobs().  Use the following as the basis for your index.yaml file for creating your datastore indexes, but you may need to add more if you decide to use more complex queries.
 
 ```
 #index.yaml
@@ -107,5 +110,10 @@ indexes:
   properties:
   - name: "status"
   - name: "created"
+
+- kind: "Job"
+  properties:
+  - name: "status"
+  - name: "startTime"
 ```
 
