@@ -1,6 +1,6 @@
 {
   "name": "job-swarm",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts":
@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies":
   {
-    "@google-cloud/datastore": "1.1.0"
+    "@google-cloud/datastore": "1.1.0",
+    "moment": "2.19.1"
   },
   "devDependencies":
   {
