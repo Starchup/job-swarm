@@ -12,7 +12,8 @@ const swarm = new JobSwarm(
 	apiEndpoint: API_ENDPOINT, //For emulated/hosted datastore
 	namespace: YOUR_DATASTORE_NAMESPACE,
 	entityKind: 'Job', //Google datastore kind.  Defaults to 'Job',
-	staleAfter: '30 minutes', //Time after which job is considered stale.  `"${value} ${unit}"` format
+	staleAfter: '30 minutes', //Time after which an ACTIVE job is considered stale, from startTime.  `"${value} ${unit}"` format
+	staleAfterReserved: '4 hours', //Time after which a RESERVED job is considered stale, from reservationTime.  `"${value} ${unit}"` format
 	controller: false,//true creates a controller instance, which has access to more methods for maintaining the datastore
 });
 ```
@@ -88,6 +89,7 @@ The following methods are available for all instances of JobSwarm (options.contr
 * `completeJobWithError(job, err)` Takes datastore job entity and err and sets status to 'failed', completionTime to new Date().toJSON(), and error to err.message
 * `skipJob(job)` Takes datastore job entity and sets status to 'skipped', completionTime to new Date().toJSON()
 * `markJobStale(job)` Takes datastore job entity and sets status to 'stale'
+* `reserveJob(job, reservationName)` Takes datastore job entity and sets status to 'reserved', reservation to reservationName
 
 The following methods are available for controller instances of JobSwarm (options.controller = true)
 
