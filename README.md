@@ -93,8 +93,9 @@ The following methods are available for all instances of JobSwarm (options.contr
 
 The following methods are available for controller instances of JobSwarm (options.controller = true)
 
-* `getJobs(filter)`  Takes filter object `{where:..., order:..., limit:...} and returns matching jobs
+* `getJobs(filter)`  Takes filter object `{where:..., order:..., limit:...}` and returns matching jobs
 * `getStaleJobs()`  Returns active jobs started before staleAfter cutoff
+* `getObsoleteJobs()`  Returns all jobs started before clearAfter cutoff
 * `createJobs(data)` Takes array of {name: '', type: ''} objects and creates jobs.  Returns count object
 * `createRawEntity(data)` Takes data object and creates a completely custom datastore entity. Returns count object
 * `deleteJob(job)` Takes job datastore entity and deletes. Returns count object
