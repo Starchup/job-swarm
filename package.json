@@ -1,22 +1,22 @@
 {
-  "name": "job-swarm",
-  "version": "1.0.7",
-  "description": "",
-  "main": "index.js",
-  "scripts":
-  {
-    "pretest": "jshint index.js && jshint lib/"
-  },
-  "keywords": [],
-  "author": "Starchup Inc",
-  "license": "ISC",
-  "dependencies":
-  {
-    "@google-cloud/datastore": "1.1.0",
-    "moment": "2.19.1"
-  },
-  "devDependencies":
-  {
-    "jshint": "2.9.5"
-  }
+    "name": "job-swarm",
+    "version": "1.0.7",
+    "description": "",
+    "main": "index.js",
+    "scripts":
+    {
+        "pretest": "jshint index.js && jshint lib/"
+    },
+    "keywords": [],
+    "author": "Starchup Inc",
+    "license": "ISC",
+    "dependencies":
+    {
+        "@google-cloud/datastore": "1.1.0",
+        "moment": "2.19.1"
+    },
+    "devDependencies":
+    {
+        "jshint": "2.9.5"
+    }
 }
