@@ -1,6 +1,6 @@
 {
   "name": "job-swarm",
-  "version": "test-2",
+  "version": "6.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
